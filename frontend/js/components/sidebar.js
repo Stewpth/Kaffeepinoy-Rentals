@@ -9,11 +9,11 @@ window.KPR.renderShell = (title, activePage, content) => {
         <a class="nav-link ${activePage === "dashboard" ? "active" : ""}" href="dashboard.php">▦ Dashboard</a>
         <a class="nav-link ${activePage === "clients" ? "active" : ""}" href="client-list.php">♙ Clients</a>
         <a class="nav-link ${activePage === "contracts" ? "active" : ""}" href="contract-monitoring.php">▤ Contract monitoring</a>
-        <div class="side-foot">Prototype data is stored in this browser only.</div>
+        <div class="side-foot">Client and payment records are stored in the KPR database.</div>
         <button class="nav-link" id="signout" type="button">↪ Sign out</button>
       </aside>
       <main class="main">
-        <header class="topbar"><div><button class="mobile-menu" id="menu" type="button" aria-label="Open navigation">☰</button><span class="topbar-title">${escape(title)}</span></div><div class="top-actions"><span class="muted">KPR Admin Staff · Demo</span><div class="avatar" aria-hidden="true">A</div></div></header>
+        <header class="topbar"><div><button class="mobile-menu" id="menu" type="button" aria-label="Open navigation">☰</button><span class="topbar-title">${escape(title)}</span></div><div class="top-actions"><span class="muted">KPR Admin Staff</span><div class="avatar" aria-hidden="true">A</div></div></header>
         <section class="content">${content}</section>
       </main>
     </div>
@@ -21,9 +21,13 @@ window.KPR.renderShell = (title, activePage, content) => {
 
   document.querySelector("#menu").onclick = () =>
     document.querySelector("#sidebar").classList.toggle("open");
-  document.querySelector("#signout").onclick = () => {
-    sessionStorage.removeItem("kpr-demo-session");
-    location.href = "login.html";
+  document.querySelector("#signout").onclick = async () => {
+    try {
+      const token = await window.KPR.api.csrf();
+      const response = await fetch("../../backend/logout.php", { method: "POST", credentials: "same-origin", headers: { "X-CSRF-Token": token } });
+      if (!response.ok) throw new Error("Could not sign out. Please try again.");
+      location.href = "login.html";
+    } catch (error) { window.KPR.toast(error.message); }
   };
   document.querySelectorAll("[data-email-placeholder]").forEach((button) => {
     button.onclick = () =>
