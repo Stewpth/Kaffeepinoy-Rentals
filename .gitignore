@@ -1,0 +1,18 @@
+# Local secrets and environment configuration
+.env
+.env.*
+!.env.example
+backend/config/database.local.php
+
+# Database exports, backups, and local logs
+*.sql.gz
+*backup*.sql
+*dump*.sql
+*.dump
+*.bak
+*.backup
+*.log
+
+# Dependency and generated directories
+/vendor/
+/node_modules/

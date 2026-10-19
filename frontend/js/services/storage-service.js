@@ -14,6 +14,8 @@ window.KPR = window.KPR || {};
     serialNumber: row.serial_number,
     status: row.contract_status,
     paymentStatus: row.payment_status,
+    finalObligationOverride: row.final_obligation_override,
+    overrideReason: row.override_reason,
   });
   let tokenPromise;
   async function csrf() {

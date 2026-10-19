@@ -6,7 +6,7 @@ $username = getenv('KPR_DB_USER');
 $password = getenv('KPR_DB_PASSWORD');
 
 if ($host === false || $dbname === false || $username === false || $password === false) {
-    error_log('Database environment variables are not fully configured.');
+    error_log('Wrong Host/DBNAME/Username or Password, please place the real password');
     http_response_code(500);
     exit('Database configuration is unavailable.');
 }
