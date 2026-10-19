@@ -9,8 +9,8 @@ window.KPR.renderShell = (title, activePage, content) => {
         <a class="nav-link ${activePage === "dashboard" ? "active" : ""}" href="dashboard.php">▦ Dashboard</a>
         <a class="nav-link ${activePage === "clients" ? "active" : ""}" href="client-list.php">♙ Clients</a>
         <a class="nav-link ${activePage === "contracts" ? "active" : ""}" href="contract-monitoring.php">▤ Contract monitoring</a>
-        <div class="side-foot">Client and payment records are stored in the KPR database.</div>
-        <button class="nav-link" id="signout" type="button">↪ Sign out</button>
+        <div class="side-foot">Thank you for using this Web</div>
+        <button class="nav-link" id="signout" type="button">Sign out</button>
       </aside>
       <main class="main">
         <header class="topbar"><div><button class="mobile-menu" id="menu" type="button" aria-label="Open navigation">☰</button><span class="topbar-title">${escape(title)}</span></div><div class="top-actions"><span class="muted">KPR Admin Staff</span><div class="avatar" aria-hidden="true">A</div></div></header>
@@ -24,10 +24,17 @@ window.KPR.renderShell = (title, activePage, content) => {
   document.querySelector("#signout").onclick = async () => {
     try {
       const token = await window.KPR.api.csrf();
-      const response = await fetch("../../backend/logout.php", { method: "POST", credentials: "same-origin", headers: { "X-CSRF-Token": token } });
-      if (!response.ok) throw new Error("Could not sign out. Please try again.");
+      const response = await fetch("../../backend/logout.php", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "X-CSRF-Token": token },
+      });
+      if (!response.ok)
+        throw new Error("Could not sign out. Please try again.");
       location.href = "login.html";
-    } catch (error) { window.KPR.toast(error.message); }
+    } catch (error) {
+      window.KPR.toast(error.message);
+    }
   };
   document.querySelectorAll("[data-email-placeholder]").forEach((button) => {
     button.onclick = () =>

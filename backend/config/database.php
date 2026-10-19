@@ -1,9 +1,15 @@
 <?php
 
-$host = 'localhost';
-$dbname = 'kaffeepinoy_dev';
-$username = 'root';
-$password = '';
+$host = getenv('KPR_DB_HOST');
+$dbname = getenv('KPR_DB_NAME');
+$username = getenv('KPR_DB_USER');
+$password = getenv('KPR_DB_PASSWORD');
+
+if ($host === false || $dbname === false || $username === false || $password === false) {
+    error_log('Database environment variables are not fully configured.');
+    http_response_code(500);
+    exit('Database configuration is unavailable.');
+}
 
 try {
     $pdo = new PDO(
@@ -19,5 +25,5 @@ try {
 } catch (PDOException $e) {
     error_log($e->getMessage());
     http_response_code(500);
-    exit('Hindi makakonekta sa database. Tingnan ang PHP error log.');
+    exit("Can't connect to database. Tingnan ang PHP error log.");
 }

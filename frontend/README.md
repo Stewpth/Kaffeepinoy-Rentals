@@ -3,9 +3,11 @@
 PHP-authenticated admin portal with the existing HTML, CSS, and vanilla JavaScript interface. Client and payment workflows use the PHP JSON API and MySQL database.
 
 ## Run
+
 Run through XAMPP Apache at `/Kaffepinoy-project/frontend/`. Do not open pages as local files; PHP sessions and API requests require Apache.
 
 ## Pages
+
 - `pages/login.html` — reference-inspired username/password login
 - `pages/dashboard.php` — database-backed summary counts
 - `pages/client-list.php` — searchable client list
@@ -16,6 +18,7 @@ Run through XAMPP Apache at `/Kaffepinoy-project/frontend/`. Do not open pages a
 `index.html` forwards to the login page. `clients.php` and `contracts.html` are compatibility redirects. There is no public registration or password-recovery workflow.
 
 ## Structure
+
 - The login references the supplied image in the workspace `references` folder; no standalone logo file was provided, so no duplicate asset was added.
 - `css/base/` — reset, design tokens, and typography.
 - `css/components/` — layout, buttons, forms, tables, badges, and notifications.
@@ -28,4 +31,18 @@ Run through XAMPP Apache at `/Kaffepinoy-project/frontend/`. Do not open pages a
 - `docs/` — proposal checklist and implementation notes.
 
 ## Backend notes
+
 Apply reviewed SQL migrations in `../backend/migrations/` only after a verified backup. Run payment-status reconciliation with `C:\xampp\php\php.exe ..\backend\migrations\recalculate-payment-status.php`. Email delivery, refunds, and undefined renewal metrics remain out of scope. See `docs/implementation-notes.md` for API details.
+
+### Database environment variables
+
+`backend/config/database.php` reads `KPR_DB_HOST`, `KPR_DB_NAME`, `KPR_DB_USER`, and `KPR_DB_PASSWORD` from the PHP process environment. Configure these for Apache in XAMPP's Apache configuration (for example, in `C:\xampp\apache\conf\extra\httpd-xampp.conf` inside an appropriate `<Directory>` or virtual-host block):
+
+```apache
+SetEnv KPR_DB_HOST localhost
+SetEnv KPR_DB_NAME kaffeepinoy_dev
+SetEnv KPR_DB_USER your_database_user
+SetEnv KPR_DB_PASSWORD your_database_password
+```
+
+Use a dedicated MySQL user with only the permissions the portal needs; do not use the MySQL root account for the application. Keep real credentials in local Apache configuration, which is outside this project, and restart Apache after changing it. Do not commit credentials or put a `.env` file under `htdocs`, where it could be served as a static file if server access rules are misconfigured. The app returns a generic error if a required variable is missing and logs no credential values.
