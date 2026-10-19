@@ -1,0 +1,1 @@
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#edf3f7;color:#516476;font-weight:600;font-size:11px}.badge.ongoing{background:#e8f5ed;color:var(--green)}.badge.paid{background:#eaf2fb;color:#296b9c}.badge.pulled{background:#f4eeee;color:#895d5d}.badge.pending{background:#fff4df;color:var(--amber)}
