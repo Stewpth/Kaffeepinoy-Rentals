@@ -13,22 +13,84 @@
   <body class="login-page" data-page="login">
     <main class="login-layout">
       <section class="brand-panel">
-        <img src="../../references/KaffeePinoy Rentals Admin Portal.png" alt="KaffeePinoy Rentals" class="reference-logo" />
-        <div class="brand-copy"><p class="eyebrow">KAFFEEPINOY RENTALS</p><h1>Manage every rental with confidence.</h1><p>A workspace for your team to oversee client records and contract monitoring.</p></div>
+        <img
+          src="../../references/KaffeePinoy Rentals Admin Portal.png"
+          alt="KaffeePinoy Rentals"
+          class="reference-logo"
+        />
+        <div class="brand-copy">
+          <p class="eyebrow">KAFFEEPINOY RENTALS</p>
+          <h1>Manage every rental with confidence.</h1>
+          <p>
+            A workspace for your team to oversee client records and contract
+            monitoring.
+          </p>
+        </div>
         <p class="brand-note">Admin staff workspace</p>
       </section>
       <section class="login-card">
-        <div class="login-brand"><img src="../../references/KaffeePinoy Rentals Admin Portal.png" alt="KaffeePinoy Rentals logo" /><span>ADMIN PORTAL</span></div>
-        <h2>Welcome back</h2><p class="muted centered">Sign in to manage KaffeePinoy Rentals</p>
-        <div class="tabs"><button class="tab active" data-auth-tab="signin">Sign In</button><button class="tab" data-auth-tab="register">Register</button></div>
+        <div class="login-brand">
+          <img
+            src="../../references/KaffeePinoy Rentals Admin Portal.png"
+            alt="KaffeePinoy Rentals logo"
+          /><span>ADMIN PORTAL</span>
+        </div>
+        <h2>Welcome back</h2>
+        <p class="muted centered">Sign in to manage KaffeePinoy Rentals</p>
+        <div class="tabs">
+          <button class="tab active" data-auth-tab="signin">Sign In</button
+          ><button class="tab" data-auth-tab="register">Register</button>
+        </div>
         <form id="login-form" class="form-stack">
-          <label>Select Role<select name="role"><option>KPR Admin Staff</option></select></label>
-          <label>Email / Username<input name="identity" autocomplete="username" placeholder="Enter your email or username" required /></label>
-          <label>Password<div class="password-wrap"><input id="password" name="password" type="password" placeholder="Enter your password" required /><button type="button" class="icon-button" data-toggle-password aria-label="Show password">◉</button></div></label>
-          <div class="inline-options"><label class="check"><input type="checkbox" name="remember" /> Keep me logged in</label><button class="link-button" type="button" data-placeholder="Password recovery workflow is not specified in the proposal.">Forgot password?</button></div>
-          <button class="button primary wide" type="submit">Sign In　→</button><p class="form-message" aria-live="polite"></p>
+          <label
+            >Select Role<select name="role">
+              <option>KPR Admin Staff</option>
+            </select></label
+          >
+          <label
+            >Email / Username<input
+              name="identity"
+              autocomplete="username"
+              placeholder="Enter your email or username"
+              required
+          /></label>
+          <label
+            >Password
+            <div class="password-wrap">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                required
+              /><button
+                type="button"
+                class="icon-button"
+                data-toggle-password
+                aria-label="Show password"
+              >
+                ◉
+              </button>
+            </div></label
+          >
+          <div class="inline-options">
+            <label class="check"
+              ><input type="checkbox" name="remember" /> Keep me logged
+              in</label
+            ><button
+              class="link-button"
+              type="button"
+              data-placeholder="Password recovery workflow is not specified in the proposal."
+            >
+              Forgot password?
+            </button>
+          </div>
+          <button class="button primary wide" type="submit">Sign In　→</button>
+          <p class="form-message" aria-live="polite"></p>
         </form>
-        <p class="security-note">Restricted Access: Authorized KaffeePinoy Rentals Personnel Only</p>
+        <p class="security-note">
+          Restricted Access: Authorized KaffeePinoy Rentals Personnel Only
+        </p>
       </section>
     </main>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
