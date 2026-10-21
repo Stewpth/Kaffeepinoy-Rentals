@@ -8,7 +8,9 @@ $password = getenv('KPR_DB_PASSWORD');
 if ($host === false || $dbname === false || $username === false || $password === false) {
     error_log('Wrong Host/DBNAME/Username or Password, please place the real password');
     http_response_code(500);
-    exit('Database configuration is unavailable.');
+    header('Content-Type: application/json; charset=utf-8');
+    header('Cache-Control: no-store');
+    exit(json_encode(['success' => false, 'message' => 'Database configuration is unavailable.']));
 }
 
 try {
@@ -25,5 +27,7 @@ try {
 } catch (PDOException $e) {
     error_log($e->getMessage());
     http_response_code(500);
-    exit("Can't connect to database. Tingnan ang PHP error log.");
+    header('Content-Type: application/json; charset=utf-8');
+    header('Cache-Control: no-store');
+    exit(json_encode(['success' => false, 'message' => 'Cannot connect to the database.']));
 }

@@ -34,7 +34,13 @@ window.KPR.Pages.login = () => {
         }),
       });
 
-      const result = await response.json();
+      const responseText = await response.text();
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch {
+        throw new Error('The server returned an invalid response.');
+      }
 
       if (!response.ok || !result.success) {
         message.textContent =
